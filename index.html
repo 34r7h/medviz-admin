@@ -62,7 +62,6 @@ angular.module('app', ['ionic','chart.js'])
       url: '/labs',
       templateUrl: 'page1.html',
       controller: function($scope, $rootScope) {
-          $rootScope.section = 'balanced';
           $scope.reps = [
               {name: 'irth'},
               {name: 'not irth'}
@@ -88,6 +87,11 @@ angular.module('app', ['ionic','chart.js'])
           $scope.onClick = function (points, evt) {
               console.log(points, evt);
           };
+          $scope.headerColor = function(color){
+              $rootScope.color = color;
+              console.log('changing color to ', $rootScope.color);
+              $scope.$apply();
+          }
 
       }
     });
@@ -105,18 +109,17 @@ angular.module('app', ['ionic','chart.js'])
   <body ng-app="app" animation="slide-left-right-ios7">
   <div>
     <div>
-        <ion-nav-bar class="bar-{{$root.section || 'balanced'}}">
+        <ion-nav-bar class="bar-{{$root.color}}">
             <ion-nav-back-button class="button-icon icon ion-ios7-arrow-back">Back</ion-nav-back-button>
         </ion-nav-bar>
         <ion-nav-view></ion-nav-view>
     </div>
 </div>
-  {{$root.section}}
 
   <script id="page1.html" type="text/ng-template">
     <ion-view title="Lab">
     <ion-tabs class="tabs-stable tabs-icon-top balanced">
-        <ion-tab title="Reps" icon="ion-person-stalker balanced" on-select="$root.section='balanced'">
+        <ion-tab title="Reps" icon="ion-person-stalker balanced" on-select="headerColor('balanced')">
             <ion-content padding="true" class="has-header">
                 <h1>Edit Reps</h1>
                 <form>
@@ -145,7 +148,7 @@ angular.module('app', ['ionic','chart.js'])
                 </div></div>
             </ion-content>
         </ion-tab>
-        <ion-tab title="Doctors" icon="ion-ios7-people royal" on-select="$root.section='royal'">
+        <ion-tab title="Doctors" icon="ion-ios7-people royal" on-select="headerColor('royal')">
             <ion-content padding="true" class="has-header">
                 <h1>Edit Doctors</h1>
                 <ion-list>
