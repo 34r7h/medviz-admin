@@ -99,8 +99,8 @@ angular.module('app', ['ionic'])
 </div>
 <script id="page1.html" type="text/ng-template">
     <ion-view title="Lab">
-    <ion-tabs class="tabs-stable tabs-icon-top energized">
-        <ion-tab title="Reps" icon="ion-person-stalker energized" class="">
+    <ion-tabs class="tabs-stable tabs-icon-top balanced">
+        <ion-tab title="Reps" icon="ion-person-stalker balanced" class="">
             <ion-content padding="true" class="has-header">
                 <h1>Edit Reps</h1>
                 <form>
@@ -111,7 +111,7 @@ angular.module('app', ['ionic'])
                         </label>
                     </ion-list>
                 </form>
-                <div ng-repeat="rep in reps" ><ion-toggle ng-model="edit.Rep" toggle-class="toggle-energized"><b>{{rep.name}}</b>
+                <div ng-repeat="rep in reps" ><ion-toggle ng-model="edit.Rep" toggle-class="toggle-balanced"><b>{{rep.name}}</b>
                 </ion-toggle>
                 <div class="list card" ng-if="edit.Rep">
                     <div class="item item-divider">Edit {{rep.name}}</div>
@@ -121,7 +121,7 @@ angular.module('app', ['ionic'])
                                 <span class="input-label">Name</span>
                                 <input type="text" placeholder="" ng-model="rep.name">
                             </label>
-                            <button class="button button-energized button-block ">Update Rep</button>
+                            <button class="button button-balanced button-block ">Update Rep</button>
                         </form>
 
                     </div>
