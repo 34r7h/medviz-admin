@@ -55,14 +55,32 @@ angular.module('app', ['ionic'])
   $stateProvider
     
     .state('page1', {
-      url: '/tabs',
-      templateUrl: 'page1.html'
-    })
-    ;
+      url: '/labs',
+      templateUrl: 'page1.html',
+      controller: function($scope) {
+          $scope.reps = [
+              {name: 'irth'},
+              {name: 'not irth'}
+          ];
+          $scope.doctors = [
+              {name: 'dr.irth'},
+              {name: 'not dr. irth'}
+          ];
+          $scope.products = [
+              {name: 'irthism'},
+              {name: 'not irthism'}
+          ];
+          $scope.visits = [
+              {name: 'irth was here'},
+              {name: 'not irth wasn\'t here'}
+          ];
+
+      }
+    });
 
   // if none of the above states are matched, use this as the fallback
   
-  $urlRouterProvider.otherwise('/tabs');
+  $urlRouterProvider.otherwise('/labs');
   
 
 });
@@ -80,104 +98,117 @@ angular.module('app', ['ionic'])
     </div>
 </div>
 <script id="page1.html" type="text/ng-template">
-<ion-view title="Lab">
-    <ion-tabs class="tabs-stable tabs-icon-top">
-        <ion-tab title="Reps" icon="ion-person-stalker">
+    <ion-view title="Lab">
+    <ion-tabs class="tabs-stable tabs-icon-top energized">
+        <ion-tab title="Reps" icon="ion-person-stalker energized" class="">
             <ion-content padding="true" class="has-header">
+                <h1>Edit Reps</h1>
                 <form>
                     <ion-list>
                         <label class="item item-input" name="rep-search">
                             <i class="icon ion-search placeholder-icon"></i>
-                            <input type="search" placeholder="Search for Representative">
+                            <input type="search" placeholder="Search Reps">
                         </label>
-                        <ion-toggle toggle-class="toggle-energized">Rep 1</ion-toggle>
                     </ion-list>
-                    <div class="list card">
-                        <div class="item item-divider">Edit Rep 1</div>
-                        <div class="item item-body">
-                            <form>
-                                <label class="item item-input">
-                                    <span class="input-label">Name</span>
-                                    <input type="text" placeholder="">
-                                </label>
-                            </form>
-                            <button class="button button-stable button-block ">Update Rep</button>
-                        </div>
-                        <div class="item item-divider">Remove Rep</div>
-                    </div>
                 </form>
+                <div ng-repeat="rep in reps" ><ion-toggle ng-model="edit.Rep" toggle-class="toggle-energized"><b>{{rep.name}}</b>
+                </ion-toggle>
+                <div class="list card" ng-if="edit.Rep">
+                    <div class="item item-divider">Edit {{rep.name}}</div>
+                    <div class="item item-body">
+                        <form>
+                            <label class="item item-input">
+                                <span class="input-label">Name</span>
+                                <input type="text" placeholder="" ng-model="rep.name">
+                            </label>
+                            <button class="button button-energized button-block ">Update Rep</button>
+                        </form>
+
+                    </div>
+                    <div class="item item-divider">Remove Rep</div>
+                </div></div>
             </ion-content>
         </ion-tab>
-        <ion-tab title="Doctors" icon="ion-ios7-people">
+        <ion-tab title="Doctors" icon="ion-ios7-people royal">
             <ion-content padding="true" class="has-header">
+                <h1>Edit Doctors</h1>
                 <ion-list>
                     <label class="item item-input">
                         <i class="icon ion-search placeholder-icon"></i>
                         <input type="search" placeholder="Search Doctors">
                     </label>
-                    <ion-toggle toggle-class="toggle-royal">Doctor 1</ion-toggle>
+                    <div ng-repeat="doctor in doctors" ><ion-toggle toggle-class="toggle-royal" ng-model="edit.doctor"><b>{{doctor.name}}</b>
+                    </ion-toggle>
+                    <div class="list card" ng-if="edit.doctor">
+                        <div class="item item-divider">Edit {{doctor.name}}</div>
+                        <div class="item item-body">
+                            <form>
+                                <label class="item item-input">
+                                    <span class="input-label">Name</span>
+                                    <input type="text" placeholder="" ng-model="doctor.name">
+                                </label>
+                                <button class="button button-royal button-block ">Update Doctor</button>
+                            </form>
+                        </div>
+                        <div class="item item-divider">Remove Doctor</div>
+                    </div></div>
                 </ion-list>
-                <div class="list card">
-                    <div class="item item-divider">Edit Doctor 1</div>
-                    <div class="item item-body">
-                        <form>
-                            <label class="item item-input">
-                                <span class="input-label">Name</span>
-                                <input type="text" placeholder="">
-                            </label>
-                            <button class="button button-stable button-block ">Update Doctor</button>
-                        </form>
-                    </div>
-                    <div class="item item-divider">Remove Doctor</div>
-                </div>
+                
             </ion-content>
         </ion-tab>
-        <ion-tab title="Products" icon="ion-waterdrop">
+        <ion-tab title="Products" icon="ion-waterdrop assertive">
             <ion-content padding="true" class="has-header">
+                <h1>Edit Products</h1>
                 <ion-list>
                     <label class="item item-input">
                         <i class="icon ion-search placeholder-icon"></i>
                         <input type="search" placeholder="Search Products">
                     </label>
-                    <ion-toggle toggle-class="toggle-assertive">Product 1</ion-toggle>
+                    <div ng-repeat="product in products">
+                        <ion-toggle toggle-class="toggle-assertive" ng-model="edit.product"><b>{{product.name}}</b>
+                    </ion-toggle>
+                    <div class="list card" ng-if="edit.product">
+                        <div class="item item-divider">Edit {{product.name}}</div>
+                        <div class="item item-body">
+                            <form>
+                                <label class="item item-input">
+                                    <span class="input-label">Name</span>
+                                    <input type="text" placeholder="" ng-model="product.name">
+                                </label>
+                                <button class="button button-assertive button-block ">Update Product</button>
+                            </form>
+                        </div>
+                        <div class="item item-divider">Remove Product</div>
+                    </div></div>
                 </ion-list>
-                <div class="list card">
-                    <div class="item item-divider">Edit Product 1</div>
-                    <div class="item item-body">
-                        <form>
-                            <label class="item item-input">
-                                <span class="input-label">Name</span>
-                                <input type="text" placeholder="">
-                            </label>
-                            <button class="button button-stable button-block ">Update Product</button>
-                        </form>
-                    </div>
-                    <div class="item item-divider">Remove Product</div>
-                </div>
+                
             </ion-content>
         </ion-tab>
-        <ion-tab title="Visits" icon="ion-calendar">
+        <ion-tab title="Visits" icon="ion-calendar calm">
             <ion-content padding="true" class="has-header">
+                <h1>Edit Visits</h1>
                 <ion-list>
                     <label class="item item-input">
                         <i class="icon ion-search placeholder-icon"></i>
                         <input type="search" placeholder="Search Visits">
                     </label>
-                    <ion-toggle toggle-class="toggle-calm">Visit 1</ion-toggle>
+                    <div ng-repeat="visit in visits"><ion-toggle toggle-class="toggle-calm" ng-model="edit.visit"><b>{{visit.name}}</b>
+                    </ion-toggle>
+                    <div class="list card" ng-if="edit.visit">
+                        <div class="item item-divider">Edit {{visit.name}}</div>
+                        <div class="item item-body">
+                            <form>
+                                <label class="item item-input">
+                                    <span class="input-label">Visit Name</span>
+                                    <input type="text" ng-model="visit.name">
+                                </label>
+                                <button class="button button-calm button-block ">Update Visit</button>
+                            </form>
+                        </div>
+                        <div class="item item-divider">Remove Visit</div>
+                    </div></div>
                 </ion-list>
-                <div class="list card">
-                    <div class="item item-divider">Edit Vist 1</div>
-                    <div class="item item-body">
-                        <form>
-                            <label class="item item-input">
-                                <span class="input-label">Visit Name</span>
-                                <input type="text" placeholder="">
-                            </label>
-                            <button class="button button-stable button-block ">Update Visit</button>
-                        </form>
-                    </div>
-                    <div class="item item-divider">Remove Visit</div>
-                </div>
+
             </ion-content>
         </ion-tab>
         <ion-tab title="Graphs" icon="ion-arrow-graph-up-right">
