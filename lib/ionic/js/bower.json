@@ -1,0 +1,23 @@
+{
+  "name": "js",
+  "version": "0.0.0",
+  "homepage": "https://github.com/irthos/medviz-admin",
+  "authors": [
+    "irthos <irth03@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-chart.js": "~0.7.2",
+    "Chart.js": "~1.0.2"
+  }
+}
